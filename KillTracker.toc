@@ -1,0 +1,16 @@
+## Interface: 11508, 20505, 50504, 11507, 11506
+## Title: Kill Tracker
+## Notes: Tracks mob kills by name/type with KPH, XP/hr, time-to-level, gold/hr, per-mob loot drops, deaths, rare/elite/boss flags, tooltip counts, search, HUD and minimap button.
+## Author: scarmonit
+## Version: 9.0
+## SavedVariablesPerCharacter: KillTrackerDB
+## OptionalDeps: wowUnit
+
+# Embedded libraries
+Libs\LibStub\LibStub.lua
+Libs\CallbackHandler-1.0\CallbackHandler-1.0.lua
+Libs\LibDataBroker-1.1\LibDataBroker-1.1.lua
+Libs\LibDBIcon-1.0\LibDBIcon-1.0.lua
+
+KillTracker.lua
+KillTracker_Tests.lua

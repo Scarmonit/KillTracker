@@ -1,0 +1,15 @@
+# CurseForge / BigWigs packager metadata
+package-as: KillTracker
+
+enable-nolib-creation: no
+
+# Libraries are bundled directly in Libs/ (no externals to fetch).
+
+# Keep dev-only files out of packaged releases.
+ignore:
+  - .github
+  - .gitignore
+  - .luacheckrc
+  - .pkgmeta
+  - README.md
+  - CHANGELOG.md

@@ -1,0 +1,21 @@
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+desktop.ini
+*~
+*.swp
+*.swo
+.vscode/
+.idea/
+
+# Packaging / build artifacts
+.release/
+*.zip
+*.bak
+
+# Lua
+luac.out
+
+# WoW runtime data (never commit a player's SavedVariables)
+WTF/
+KillTrackerDB.lua
