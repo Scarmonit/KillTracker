@@ -22,7 +22,8 @@ No external dependencies to install — the required libraries are bundled.
 - **Rare / Elite / Boss flagging** — special kills are color-coded and counted separately.
 - **Deaths counter** — lifetime and per-session.
 - **Searchable, sortable list** — filter by name; click column headers to sort.
-- **Live HUD** — a compact, movable on-screen readout for grinding sessions.
+- **Live HUD** — a compact on-screen readout for grinding sessions; **movable, resizable, and lockable** (state saved).
+- **Options panel** — in the Interface/AddOns settings or via `/kt options`: HUD, minimap, announcements, and pace window.
 - **Session history** — each session (kills/XP/gold/time/deaths) is saved so you can compare farming spots.
 - **Minimap button / Data Broker** — built on LibDBIcon + LibDataBroker, so it also shows up in Titan Panel, Bazooka, ChocolateBar, etc.
 
@@ -57,6 +58,8 @@ git clone https://github.com/Scarmonit/KillTracker.git
 |---------|--------------|
 | `/kt` | Toggle the main window |
 | `/kt hud` | Toggle the live session HUD |
+| `/kt lock` | Lock/unlock the HUD (move + resize) |
+| `/kt options` | Open the options panel |
 | `/kt minimap` | Show/hide the minimap button |
 | `/kt history` | Open saved session history |
 | `/kt window N` | Set the pace window for XP/hr & ETA (minutes) |
@@ -89,18 +92,22 @@ The "Recording" tests snapshot and restore your saved data, so running them is n
 ```
 KillTracker/
 ├── KillTracker.toc          # addon manifest (multi-flavor interface lines)
-├── KillTracker.lua          # all addon logic + UI
+├── Core.lua                 # namespace, utils, widgets, event + refresh systems
+├── Data.lua                 # saved variables, session state, recording, handlers
+├── Stats.lua                # rolling-window rates, projections, sorting
+├── UI.lua                   # main window + tooltip
+├── Drops.lua                # per-mob loot panel
+├── History.lua              # session-history panel
+├── HUD.lua                  # movable/resizable/lockable live HUD
+├── Options.lua              # Interface options panel
+├── Minimap.lua              # LibDataBroker + LibDBIcon broker
+├── Commands.lua             # slash command dispatcher
 ├── KillTracker_Tests.lua    # wowUnit test suite
 ├── .luacheckrc              # luacheck config (WoW API declared)
-├── Libs/                    # embedded libraries
-│   ├── LibStub/
-│   ├── CallbackHandler-1.0/
-│   ├── LibDataBroker-1.1/
-│   └── LibDBIcon-1.0/
+├── Libs/                    # embedded libraries (LibStub, CallbackHandler,
+│                            #   LibDataBroker-1.1, LibDBIcon-1.0)
 ├── .github/workflows/       # CI: luacheck on push/PR
-├── LICENSE
-├── CHANGELOG.md
-└── README.md
+├── LICENSE · CHANGELOG.md · README.md
 ```
 
 ## Contributing

@@ -4,6 +4,21 @@ All notable changes to this project are documented here. This project loosely
 follows [Keep a Changelog](https://keepachangelog.com/) and semantic-ish
 versioning by addon `## Version`.
 
+## [10.0]
+### Changed
+- **Modularized** the single `KillTracker.lua` into focused files that share an
+  addon namespace: `Core`, `Data`, `Stats`, `UI`, `Drops`, `History`, `HUD`,
+  `Options`, `Minimap`, `Commands`. Behavior is unchanged.
+### Added
+- **Options panel** in the Interface/AddOns settings (and `/kt options`): toggle
+  the HUD, lock the HUD, show/hide the minimap button, announce level-ups, and
+  set the pace window with a slider.
+- **HUD is now resizable** (drag the bottom-right grip) in addition to movable,
+  and has a **lock toggle** (`/kt lock`); position, size, and lock state are saved.
+### Fixed / hardened
+- Event and refresh handlers run in `pcall`, so one error can't break the rest.
+- More nil-checks and tonumber guards in the utilities.
+
 ## [9.0]
 ### Added
 - **LibDataBroker + LibDBIcon** minimap button — now interops with Titan Panel,
