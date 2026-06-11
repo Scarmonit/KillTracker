@@ -10,7 +10,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Run luacheck
-        uses: lunarmodules/luacheck@v1
+      - uses: leafo/gh-actions-lua@v10
         with:
-          args: . --no-color
+          luaVersion: "5.1"
+      - uses: leafo/gh-actions-luarocks@v4
+      - name: Install luacheck
+        run: luarocks install luacheck
+      - name: Run luacheck
+        run: luacheck KillTracker.lua KillTracker_Tests.lua
