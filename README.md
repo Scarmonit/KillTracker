@@ -1,8 +1,8 @@
 # Kill Tracker
 
-[![Lint](https://github.com/Scarmonit/KillTracker/actions/workflows/luacheck.yml/badge.svg)](https://github.com/Scarmonit/KillTracker/actions/workflows/luacheck.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 ![WoW Classic](https://img.shields.io/badge/WoW-Classic%20Era%20%7C%20Anniversary%20%7C%20MoP%20Classic-blue)
+![Lua](https://img.shields.io/badge/Lua-5.1-000080.svg)
 
 A lightweight **World of Warcraft Classic** addon that tracks every mob you kill — by name, creature type, and grand total — and turns it into real grinding analytics: kills/XP/gold **per hour**, **time-to-level**, per-mob **loot drops**, **reputation** progress, a live HUD, and a minimap button.
 
