@@ -22,6 +22,7 @@ local function Build()
     local hud = CreateFrame("Frame", "KillTracker_HUD", UIParent, "BackdropTemplate")
     ns.hud = hud
     hud:SetSize(db.hud.w or DEFAULT_W, db.hud.h or DEFAULT_H)
+    hud:SetScale(db.hud.scale or 1.0)
     if db.hud.point then hud:SetPoint(db.hud.point, UIParent, db.hud.point, db.hud.x or 0, db.hud.y or 0)
     else hud:SetPoint("TOP", 0, -160) end
     hud:SetClampedToScreen(true)
@@ -131,6 +132,26 @@ function ns.ToggleHUDLock()
 end
 
 function ns.IsHUDLocked() return ns.EnsureDB().hud.locked end
+
+function ns.SetHUDScale(scale)
+    scale = tonumber(scale) or 1.0
+    if scale < 0.5 then scale = 0.5 elseif scale > 2.0 then scale = 2.0 end
+    ns.EnsureDB().hud.scale = scale
+    if ns.hud then ns.hud:SetScale(scale) end
+end
+
+function ns.GetHUDScale() return ns.EnsureDB().hud.scale or 1.0 end
+
+-- Recenter the HUD and forget the saved position.
+function ns.ResetHUDPosition()
+    local db = ns.EnsureDB()
+    db.hud.point, db.hud.x, db.hud.y = nil, nil, nil
+    if ns.hud then
+        ns.hud:ClearAllPoints()
+        ns.hud:SetPoint("TOP", UIParent, "TOP", 0, -160)
+    end
+    ns.Print("HUD position reset.")
+end
 
 -- repaint immediately on data changes (the ticker handles idle updates)
 ns.AddRefresher(function() if ns.hud and ns.hud:IsShown() then ns.RefreshHUD() end end)

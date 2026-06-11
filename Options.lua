@@ -84,6 +84,38 @@ controls[#controls + 1] = function()
 end
 
 -- ---------------------------------------------------------------------------
+-- HUD scale slider
+-- ---------------------------------------------------------------------------
+local scaleSlider = CreateFrame("Slider", "KillTrackerOptions_ScaleSlider", panel, "OptionsSliderTemplate")
+scaleSlider:SetPoint("TOPLEFT", 22, -252)
+scaleSlider:SetWidth(220)
+scaleSlider:SetMinMaxValues(0.5, 2.0)
+scaleSlider:SetValueStep(0.05)
+if scaleSlider.SetObeyStepOnDrag then scaleSlider:SetObeyStepOnDrag(true) end
+
+local scaleLabel = _G[scaleSlider:GetName() .. "Text"]
+local scaleLow   = _G[scaleSlider:GetName() .. "Low"]
+local scaleHigh  = _G[scaleSlider:GetName() .. "High"]
+if scaleLow then scaleLow:SetText("50%") end
+if scaleHigh then scaleHigh:SetText("200%") end
+
+scaleSlider:SetScript("OnValueChanged", function(_, value)
+    value = math.floor(value * 20 + 0.5) / 20   -- snap to 0.05
+    if scaleLabel then scaleLabel:SetText(string.format("HUD scale: %d%%", math.floor(value * 100 + 0.5))) end
+    ns.SetHUDScale(value)
+end)
+controls[#controls + 1] = function() scaleSlider:SetValue(ns.GetHUDScale()) end
+
+-- ---------------------------------------------------------------------------
+-- Reset HUD position button
+-- ---------------------------------------------------------------------------
+local resetPos = CreateFrame("Button", nil, panel, "UIPanelButtonTemplate")
+resetPos:SetSize(160, 22)
+resetPos:SetPoint("TOPLEFT", 24, -300)
+resetPos:SetText("Reset HUD position")
+resetPos:SetScript("OnClick", function() ns.ResetHUDPosition() end)
+
+-- ---------------------------------------------------------------------------
 -- Refresh control state when the panel is shown
 -- ---------------------------------------------------------------------------
 panel:SetScript("OnShow", function()

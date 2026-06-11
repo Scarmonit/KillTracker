@@ -23,7 +23,7 @@ No external dependencies to install — the required libraries are bundled.
 - **Deaths counter** — lifetime and per-session.
 - **Searchable, sortable list** — filter by name; click column headers to sort.
 - **Live HUD** — a compact on-screen readout for grinding sessions; **movable, resizable, and lockable** (state saved).
-- **Options panel** — in the Interface/AddOns settings or via `/kt options`: HUD, minimap, announcements, and pace window.
+- **Options panel** — in the Interface/AddOns settings or via `/kt options`: HUD visibility/lock/scale/reset-position, minimap button, level-up announcements, and pace window.
 - **Session history** — each session (kills/XP/gold/time/deaths) is saved so you can compare farming spots.
 - **Minimap button / Data Broker** — built on LibDBIcon + LibDataBroker, so it also shows up in Titan Panel, Bazooka, ChocolateBar, etc.
 

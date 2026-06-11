@@ -25,6 +25,7 @@ local function EnsureDB()
     db.hud     = db.hud     or {}
     if db.hud.shown  == nil then db.hud.shown  = false end
     if db.hud.locked == nil then db.hud.locked = false end
+    db.hud.scale = db.hud.scale or 1.0
     db.minimap = db.minimap or { hide = false }
     return db
 end

@@ -4,6 +4,11 @@ All notable changes to this project are documented here. This project loosely
 follows [Keep a Changelog](https://keepachangelog.com/) and semantic-ish
 versioning by addon `## Version`.
 
+## [11.0]
+### Added
+- **HUD scale** slider in the options panel (50%–200%, saved per character).
+- **Reset HUD position** button in the options panel.
+
 ## [10.0]
 ### Changed
 - **Modularized** the single `KillTracker.lua` into focused files that share an
