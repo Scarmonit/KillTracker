@@ -4,6 +4,14 @@ All notable changes to this project are documented here. This project loosely
 follows [Keep a Changelog](https://keepachangelog.com/) and semantic-ish
 versioning by addon `## Version`.
 
+## [12.0]
+### Added
+- **Mobs to Next Level** display: an estimate of how many more mobs you need to
+  level, based on the XP of the mob you're currently killing. Shown in the HUD
+  ("Mobs to lvl: N"), the main window's XP line, and a new title-bar hover
+  tooltip; updates in real time and handles max-level / no-XP / near-level edge
+  cases. Toggle it under **Options → Show Mobs to Next Level**.
+
 ## [11.0]
 ### Added
 - **HUD scale** slider in the options panel (50%–200%, saved per character).

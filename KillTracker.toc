@@ -2,7 +2,7 @@
 ## Title: Kill Tracker
 ## Notes: Tracks mob kills by name/type with KPH, XP/hr, time-to-level, gold/hr, per-mob loot drops, deaths, rare/elite/boss flags, tooltip counts, search, HUD and minimap button.
 ## Author: scarmonit
-## Version: 11.0
+## Version: 12.0
 ## SavedVariablesPerCharacter: KillTrackerDB
 ## OptionalDeps: wowUnit
 

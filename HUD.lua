@@ -3,8 +3,8 @@
 
 local _, ns = ...
 
-local DEFAULT_W, DEFAULT_H = 180, 82
-local MIN_W, MIN_H, MAX_W, MAX_H = 150, 64, 420, 260
+local DEFAULT_W, DEFAULT_H = 180, 98
+local MIN_W, MIN_H, MAX_W, MAX_H = 150, 64, 420, 280
 
 -- Apply the locked state: when locked the HUD ignores the mouse (click-through),
 -- can't be dragged, and hides its resize grip + drag hint.
@@ -62,6 +62,8 @@ local function Build()
     hud.line3:SetPoint("TOP", hud.line2, "BOTTOM", 0, -2)
     hud.line4 = hud:CreateFontString(nil, "OVERLAY", "GameFontDisableSmall")
     hud.line4:SetPoint("TOP", hud.line3, "BOTTOM", 0, -2)
+    hud.line5 = hud:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
+    hud.line5:SetPoint("TOP", hud.line4, "BOTTOM", 0, -2)
 
     -- drag/resize hint (only visible when unlocked)
     hud.hint = hud:CreateFontString(nil, "OVERLAY", "GameFontDisableSmall")
@@ -107,6 +109,15 @@ function ns.RefreshHUD()
         hud.line3:SetText("|cff808080max level|r")
     end
     hud.line4:SetText(ns.Money(gph) .. "/hr")
+
+    -- Mobs to next level (optional, hidden at max level / before any XP sample)
+    if ns.EnsureDB().showMobsToLevel and xs and xs.mobs then
+        hud.line5:SetText("Mobs to lvl: |cffffd100" .. xs.mobs .. "|r")
+        hud.line5:Show()
+    else
+        hud.line5:SetText("")
+        hud.line5:Hide()
+    end
 end
 
 function ns.ToggleHUD()

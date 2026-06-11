@@ -22,6 +22,7 @@ local function EnsureDB()
     db.window  = db.window  or 600   -- sliding rate window, seconds
     db.deaths  = db.deaths  or 0
     db.announceLevel = (db.announceLevel == nil) and true or db.announceLevel
+    if db.showMobsToLevel == nil then db.showMobsToLevel = true end
     db.hud     = db.hud     or {}
     if db.hud.shown  == nil then db.hud.shown  = false end
     if db.hud.locked == nil then db.hud.locked = false end

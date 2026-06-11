@@ -15,7 +15,8 @@ No external dependencies to install — the required libraries are bundled.
 - **Kill tracking** — counts every mob you, your pet, or your minions land the killing blow on, grouped by **name** and **creature type**, with a lifetime grand total. Per-character.
 - **Tooltip kill count** — hover any mob to see how many you've killed.
 - **Accurate rates (sliding window)** — XP/hr, gold/hr, kills/hr and rep/hr are computed over a recent window (default 10 min), so travel/looting/AFK don't skew them. Self-corrects for rested XP.
-- **Time-to-level** — live ETA, **mobs-to-go**, and a **per-mob XP average** so the estimate matches the mob you're actually farming.
+- **Time-to-level** — live ETA, **per-mob XP average** so the estimate matches the mob you're actually farming.
+- **Mobs to Next Level** — estimates how many more mobs you need to level, based on the XP of the mob you're currently killing, and updates in real time as you switch to higher/lower-XP mobs. Shown in the **HUD**, the main window, and the **title-bar hover tooltip**; toggle it in the options.
 - **Gold & loot value** — tracks coin gained plus the vendor value of looted items (locale-independent), shown as gold/hr.
 - **Per-mob loot drops** — click any mob to see its drop table with **drop %**, quantity, and **vendor value** per item.
 - **Reputation tracking** — for your watched faction: rep/hr, **time-to-next standing**, and **kills-to-next**.
@@ -23,7 +24,7 @@ No external dependencies to install — the required libraries are bundled.
 - **Deaths counter** — lifetime and per-session.
 - **Searchable, sortable list** — filter by name; click column headers to sort.
 - **Live HUD** — a compact on-screen readout for grinding sessions; **movable, resizable, and lockable** (state saved).
-- **Options panel** — in the Interface/AddOns settings or via `/kt options`: HUD visibility/lock/scale/reset-position, minimap button, level-up announcements, and pace window.
+- **Options panel** — in the Interface/AddOns settings or via `/kt options`: HUD visibility/lock/scale/reset-position, Mobs-to-Next-Level toggle, minimap button, level-up announcements, and pace window.
 - **Session history** — each session (kills/XP/gold/time/deaths) is saved so you can compare farming spots.
 - **Minimap button / Data Broker** — built on LibDBIcon + LibDataBroker, so it also shows up in Titan Panel, Bazooka, ChocolateBar, etc.
 

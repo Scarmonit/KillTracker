@@ -52,6 +52,14 @@ local function BuildUI()
     local close = CreateFrame("Button", nil, frame, "UIPanelCloseButton")
     close:SetPoint("TOPRIGHT", 2, 2)
 
+    -- hover the title bar for a quick summary (incl. Mobs to Level)
+    local titleHover = CreateFrame("Button", nil, frame)
+    titleHover:SetPoint("TOPLEFT", 1, -1)
+    titleHover:SetPoint("TOPRIGHT", -48, -1)
+    titleHover:SetHeight(24)
+    titleHover:SetScript("OnEnter", function(self) ns.ShowSummaryTooltip(self) end)
+    titleHover:SetScript("OnLeave", function() GameTooltip:Hide() end)
+
     -- gear button (options) next to the close button
     local gear = CreateFrame("Button", nil, frame)
     gear:SetSize(20, 20); gear:SetPoint("TOPRIGHT", -26, -4)
@@ -193,11 +201,13 @@ function ns.RefreshUI()
     local xs = ns.XPStats()
     if xs then
         local ttl = xs.ttl and ns.FormatTime(xs.ttl) or "--"
-        local mobs = xs.mobs and tostring(xs.mobs) or "--"
         local rested = (xs.rested > 0) and ("  |cffff80ff+" .. ns.CommaNum(xs.rested) .. " rested|r") or ""
-        frame.xpText:SetText(string.format(
-            "XP |cff66ccff%s|r/hr · to level |cff66ccff%s|r · |cff66ccff%s|r mobs%s",
-            ns.CommaNum(xs.xph), ttl, mobs, rested))
+        local mobsSeg = ""
+        if db.showMobsToLevel then
+            mobsSeg = " · |cff66ccff" .. (xs.mobs and tostring(xs.mobs) or "--") .. "|r mobs"
+        end
+        frame.xpText:SetText(string.format("XP |cff66ccff%s|r/hr · to level |cff66ccff%s|r%s%s",
+            ns.CommaNum(xs.xph), ttl, mobsSeg, rested))
     else
         frame.xpText:SetText("|cff808080Max level — XP tracking off|r")
     end
@@ -233,6 +243,34 @@ function ns.RefreshUI()
         end
     end
     FauxScrollFrame_Update(frame.scroll, #list, NUM_ROWS, ROW_HEIGHT)
+end
+
+-- Summary shown when hovering the window's title bar.
+function ns.ShowSummaryTooltip(anchor)
+    local db = ns.EnsureDB()
+    GameTooltip:SetOwner(anchor, "ANCHOR_BOTTOMLEFT")
+    GameTooltip:AddLine("Kill Tracker")
+    GameTooltip:AddDoubleLine("Total kills", db.total, 1, 1, 1, 1, 0.82, 0)
+    local _, kph, _, _, _, gph = ns.RecentRates()
+    GameTooltip:AddDoubleLine("Session", string.format("%d kills  (%.0f KPH)", ns.session.count, kph),
+        1, 1, 1, 1, 0.82, 0)
+    local xs = ns.XPStats()
+    if xs then
+        GameTooltip:AddDoubleLine("XP / hour", ns.CommaNum(xs.xph), 1, 1, 1, 0.4, 0.8, 1)
+        GameTooltip:AddDoubleLine("Time to level", xs.ttl and ns.FormatTime(xs.ttl) or "--", 1, 1, 1, 0.4, 0.8, 1)
+        if db.showMobsToLevel then
+            GameTooltip:AddDoubleLine("Mobs to level", xs.mobs and tostring(xs.mobs) or "--", 1, 1, 1, 1, 0.82, 0)
+        end
+    else
+        GameTooltip:AddLine("Max level", 0.5, 0.5, 0.5)
+    end
+    GameTooltip:AddDoubleLine("Gold / hour", ns.Money(gph), 1, 1, 1, 1, 0.82, 0)
+    local rs = ns.RepStats()
+    if rs then
+        GameTooltip:AddDoubleLine(rs.name .. " to next", rs.kills and (rs.kills .. " kills") or "--",
+            1, 1, 1, 0.9, 0.5, 0.9)
+    end
+    GameTooltip:Show()
 end
 
 function ns.ToggleUI()

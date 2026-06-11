@@ -56,6 +56,10 @@ makeCheck("Announce level-ups", "Print a kills/time summary in chat when you lev
     function() return ns.EnsureDB().announceLevel end,
     function(want) ns.EnsureDB().announceLevel = want end)
 
+makeCheck("Show Mobs to Next Level", "Estimate kills-to-level (in the HUD, window, and title tooltip).", -172,
+    function() return ns.EnsureDB().showMobsToLevel end,
+    function(want) ns.EnsureDB().showMobsToLevel = want; ns.Refresh() end)
+
 -- ---------------------------------------------------------------------------
 -- Rate-window slider
 -- ---------------------------------------------------------------------------

@@ -78,6 +78,14 @@ function ns.XPStats()
              rested = (GetXPExhaustion and GetXPExhaustion()) or 0 }
 end
 
+-- Mobs needed to reach the next level, based on the average XP of the most
+-- recently killed mob (falling back to the recent-window average). Returns nil
+-- at max level or when there's no XP sample yet (caller shows "--"/hides).
+function ns.MobsToLevel()
+    local xs = ns.XPStats()
+    return xs and xs.mobs or nil
+end
+
 -- Reputation projection for the watched faction, or nil if none watched.
 function ns.RepStats()
     if not GetWatchedFactionInfo then return nil end
